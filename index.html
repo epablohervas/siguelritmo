@@ -1,0 +1,1674 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sigueme el Ritmo | Mi Blog de Gimnasia Rítmica</title>
+    <style>
+
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+       
+
+
+ :root {
+            --turquesa: #40e0d0;
+            --menta: #b2f2bb;
+            --lila: #dcd0ff;
+            --rosa-pastel: #ffdce0;
+            --amarillo: #fff176;
+            --oscuro: #2d3436;
+            --rojopastel: #ffb3ba;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            background-color: #f0fdfa;
+            color: var(--oscuro);
+            scroll-behavior: smooth;
+        }
+
+        /* Navegación Principal */
+        header {
+            background: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+h1 { 
+            color: var(--turquesa); 
+            margin-bottom: 15px; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            font-family: 'Cinzel', serif; 
+            font-size: 3.5rem; /
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1); /
+        }
+
+        nav button {
+            background: white;
+            border: 2px solid var(--turquesa);
+            color: var(--oscuro);
+            padding: 10px 18px;
+            margin: 5px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+
+        nav button:hover {
+            background: var(--turquesa);
+            color: white;
+        }
+
+        /* Sistema de Secciones */
+        .section {
+            display: none;
+            padding: 40px 10%;
+            animation: fadeIn 0.6s ease;
+        }
+
+        .active { display: block; }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Estilos de la Lista de Días */
+        .lista-dias {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .tarjeta-dia {
+            background: white;
+            border: 2px solid var(--turquesa);
+            padding: 15px 25px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1.1rem;
+            color: var(--oscuro);
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.05);
+        }
+
+        .tarjeta-dia:hover {
+            background: var(--turquesa);
+            color: white;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(64, 224, 208, 0.3);
+        }
+
+        /* Estilos de la Entrada Individual */
+        .entrada {
+            background:
+                repeating-linear-gradient(
+                    to bottom,
+                    #fffdf7 0px,
+                    #fffdf7 34px,
+                    #d6eaff 35px,
+                    #fffdf7 36px
+                );
+            padding: 40px;
+            margin-bottom: 25px;
+            border-radius: 12px;
+            border-left: 12px solid #ff8fab;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+            display: none;
+            position: relative;
+            line-height: 36px;
+            font-family: "Segoe Print", cursive;
+        }
+
+        /* Agujeros del cuaderno */
+        .entrada::before{
+            content:"";
+            position:absolute;
+            left:-18px;
+            top:20px;
+            width:20px;
+            height:20px;
+            background:white;
+            border-radius:50%;
+            box-shadow:
+                0 60px white,
+                0 120px white,
+                0 180px white,
+                0 240px white,
+                0 300px white,
+                0 360px white,
+                0 420px white;
+        } 
+
+        span:first-child{
+            font-family: "Comic Sans MS", cursive;
+            font-size: 1.5rem !important;
+        }
+
+      
+       /* Botón de volver */
+        .btn-volver {
+            background: var(--turquesa);
+            color: var(--oscuro); 
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-bottom: 20px;
+            transition: 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .btn-volver:hover {
+            background: #2cb5a8;
+            color: white; /* Al oscurecerse el fondo con el ratón, el texto pasa a blanco */
+        }
+
+        /* Navegación Interna */
+        .navegacion-interna {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 35px;
+            padding-top: 20px;
+            border-top: 2px dashed #eee;
+            gap: 10px;
+        }
+
+        .btn-nav-interno {
+            background: white;
+            border: 2px solid var(--turquesa);
+            color: var(--oscuro);
+            padding: 8px 16px;
+            border-radius: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-nav-interno:hover {
+            background: var(--rosa-pastel);
+            border-color: var(--turquesa);
+        }
+
+        /* Etiquetas */
+        .badge { padding: 4px 10px; border-radius: 8px; font-size: 0.75rem; font-weight: bold; margin-left: 10px; display: inline-block; font-family: 'Segoe UI', sans-serif;}
+        .teorica { background: var(--lila); color: #5d3fd3; border: 1px solid #cbb8ff; }
+        .primera { background: var(--amarillo); color: #856404; border: 1px solid #ffeeba; }
+        .taller  { background: var(--rojopastel); color: #d93838; border: 1px solid #ff746c; }
+
+        /* Media */
+        .media-content {
+            width: 100%;
+            max-width: 500px;
+            border-radius: 12px;
+            border: 3px solid var(--menta);
+            display: block;
+            margin: 15px auto;
+        }
+
+        iframe {
+            display: block;
+            margin: 15px auto;
+            width: 100%;
+            max-width: 500px;
+            height: 315px;
+            border-radius: 12px;
+            border: 3px solid var(--menta);
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: white;
+            box-shadow: 0 -4px 12px rgba(0,0,0,0.05);
+            margin-top: 40px;
+        }
+
+        /* ===========================
+           GALERIA TIPO MOVIL
+        =========================== */
+
+        .selector-galeria {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin: 30px 0;
+        }
+
+        .selector-galeria button {
+            background: white;
+            border: 2px solid var(--turquesa);
+            padding: 12px 25px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: .3s;
+            font-size: 1.1rem;
+        }
+
+        .selector-galeria button:hover, .selector-galeria button.active-btn {
+            background: var(--turquesa);
+            color: white;
+        }
+
+        .contenido-galeria {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        /* FOTOS */
+        .item-galeria {
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0,0,0,.15);
+            transition: transform 0.3s;
+        }
+        
+        .item-galeria:hover {
+            transform: translateY(-5px);
+        }
+
+        .item-galeria img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .item-galeria span {
+            display: block;
+            text-align: center;
+            padding: 15px;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+            color:#e6c068;
+        }
+
+        /* VIDEOS */
+        .video-galeria {
+            background: white;
+            border-radius: 20px;
+            padding: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,.15);
+            transition: transform 0.3s;
+        }
+
+        .video-galeria:hover {
+            transform: translateY(-5px);
+        }
+
+        .video-galeria iframe {
+            width: 100%;
+            height: 250px;
+            border: none;
+            border-radius: 10px;
+        }
+
+        .video-galeria span {
+            display: block;
+            text-align: center;
+            margin-top: 15px;
+            font-weight: bold;
+            font-family: 'Segoe UI', sans-serif;
+            color:#e6c068;
+        }
+/* =========================
+   GALERÍA PRO MÓVIL OSCURO
+========================= */
+
+#galeria {
+    background: radial-gradient(circle at top, #1a1a1d, #0a0a0c);
+    min-height: 100vh;
+    color: white;
+}
+
+.galeria-title {
+    text-align: center;
+    padding: 20px;
+    font-size: 2rem;
+    color: #40e0d0;
+    letter-spacing: 2px;
+}
+
+.galeria-container {
+    max-width: 520px;
+    margin: auto;
+    padding: 20px;
+}
+
+.galeria-container h3 {
+    color: #b2f2bb;
+    border-left: 4px solid #40e0d0;
+    padding-left: 10px;
+    margin-top: 30px;
+}
+
+.galeria-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* tarjeta estilo móvil */
+.card {
+    background: #151518;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+    border: 1px solid #2a2a2a;
+    transform: scale(1);
+    transition: 0.3s;
+}
+
+.card:hover {
+    transform: scale(1.02);
+}
+
+/* imagen grande estilo móvil */
+.card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    image-rendering: auto;
+    filter: contrast(1.05) saturate(1.05);
+}
+/* video */
+.card iframe {
+    width: 100%;
+    height: 320px;
+    border: none;
+}
+
+/* fecha estilo etiqueta */
+.fecha {
+    display: block;
+    padding: 10px 15px;
+    background: #101012;
+    color: #e6c068;;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+/* ========================= */
+/* TALLERES PRO */
+/* ========================= */
+
+.talleres-container{
+    max-width:1400px;
+    margin:auto;
+}
+
+.titulo-talleres{
+    text-align:center;
+    font-size:3.3rem;
+    margin-bottom:60px;
+    font-family:'Cinzel',serif;
+    color:#6ee7d8;
+    letter-spacing:4px;
+    text-transform:uppercase;
+}
+
+.grid-talleres{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:30px;
+}
+
+.card-taller{
+    background:white;
+    border-radius:25px;
+    padding:40px 25px;
+    text-align:center;
+    cursor:pointer;
+    position:relative;
+    overflow:hidden;
+
+    transition:.4s;
+
+    box-shadow:
+    0 10px 30px rgba(0,0,0,.08);
+}
+
+.card-taller:hover{
+    transform:translateY(-10px) scale(1.03);
+
+    box-shadow:
+    0 25px 40px rgba(64,224,208,.35);
+}
+
+.card-taller::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:8px;
+    background:linear-gradient(
+    90deg,
+    #40e0d0,
+    #dcd0ff,
+    #ffdce0
+    );
+}
+
+.numero{
+    font-size:4rem;
+    font-weight:900;
+    color:rgba(64,224,208,.2);
+}
+
+.card-taller h3{
+    font-family:'Cinzel',serif;
+    font-size:1.8rem;
+    margin-bottom:10px;
+    color:#284b63;
+}
+.card-taller p{
+    font-family:'Montserrat',sans-serif;
+    font-size:1rem;
+    color:#597081;
+}
+.especial{
+    background:
+    linear-gradient(
+    135deg,
+    #40e0d0,
+    #7b61ff
+    );
+
+    color:white;
+}
+
+.especial h3,
+.especial p,
+.especial .numero{
+    color:white;
+}
+
+.separador-talleres{
+    margin:80px auto;
+    width:250px;
+    height:5px;
+
+    border-radius:20px;
+
+    background:
+    linear-gradient(
+    90deg,
+    transparent,
+    #40e0d0,
+    transparent
+    );
+}
+
+.titulo-ensayos{
+    text-align:center;
+    font-size:2.5rem;
+    color:var(--turquesa);
+}
+
+.texto-ensayos{
+    text-align:center;
+    color:#666;
+    margin-bottom:40px;
+}
+
+.grid-ensayos{
+    display:grid;
+    grid-template-columns:
+    repeat(auto-fit,minmax(350px,1fr));
+
+    gap:30px;
+}
+
+.video-ensayo{
+    background:white;
+    padding:15px;
+    border-radius:20px;
+
+    box-shadow:
+    0 10px 25px rgba(0,0,0,.08);
+}
+
+.video-ensayo iframe{
+    width:100%;
+    height:300px;
+    border:none;
+    border-radius:15px;
+}  
+
+.decoracion-izquierda,
+.decoracion-derecha{
+    position:fixed;
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    z-index:0;
+    opacity:.18;
+    animation:flotar 8s infinite ease-in-out;
+}
+
+.decoracion-izquierda{
+    left:30px;
+    top:35%;
+    background:radial-gradient(
+    circle,
+    #40e0d0,
+    transparent 70%
+    );
+}
+
+.decoracion-derecha{
+    right:30px;
+    top:50%;
+    background:radial-gradient(
+    circle,
+    #dcd0ff,
+    transparent 70%
+    );
+}
+
+@keyframes flotar{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-30px);}
+    100%{transform:translateY(0);}
+}
+
+
+.hero-coreo{
+    height:85vh;
+
+    background:
+    linear-gradient(
+    rgba(0,0,0,.55),
+    rgba(0,0,0,.55)
+    ),
+    url("COREOFINAL1.jpeg");
+
+    background-size:cover;
+    background-position:center;
+
+    border-radius:25px;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+.overlay-coreo{
+    text-align:center;
+    color:white;
+    max-width:800px;
+}
+
+.fecha-coreo{
+    letter-spacing:4px;
+    font-size:.9rem;
+}
+
+.overlay-coreo h1{
+    font-size:5rem;
+    margin:20px 0;
+    font-family:'Cinzel',serif;
+}
+
+.overlay-coreo p{
+    font-size:1.3rem;
+}
+
+.contenido-coreo{
+    max-width:1000px;
+    margin:auto;
+    padding:80px 20px;
+}
+
+.contenido-coreo h2{
+    text-align:center;
+    color:#40e0d0;
+    font-family:'Cinzel',serif;
+    margin-bottom:40px;
+}
+
+.contenido-coreo p{
+    line-height:2;
+    font-size:1.1rem;
+}
+
+.foto-coreo{
+    width:100%;
+    border-radius:20px;
+    margin:40px 0;
+}
+
+.contenido-coreo iframe{
+    width:100%;
+    height:600px;
+    border:none;
+    border-radius:20px;
+}
+
+
+/* Estilos específicos para la sección Inicio */
+    #inicio {
+        background: linear-gradient(135deg, #f0fdfa 0%, #e0fcf9 100%);
+        border-radius: 20px;
+        padding: 50px 20px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+        margin-top: 20px;
+    }
+
+    /* Cabecera Hero */
+    .hero-bienvenida {
+        text-align: center;
+        margin-bottom: 50px;
+    }
+
+    .titulo-animado {
+        font-family: 'Cinzel', serif;
+        font-size: 3rem;
+        color: var(--turquesa-oscuro, #2cb5a8);
+        margin-bottom: 10px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        animation: fadeInDown 1s ease;
+    }
+
+    .subtitulo-hero {
+        font-size: 1.2rem;
+        color: #666;
+        font-weight: 600;
+        animation: fadeInUp 1s ease 0.3s forwards;
+        opacity: 0;
+    }
+
+    /* Contenedor Principal en 2 Columnas */
+    .intro-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 50px;
+        align-items: center;
+        max-width: 1100px;
+        margin: 0 auto;
+    }
+
+    /* === COLUMNA IZQUIERDA: FOTOS === */
+    .intro-visual {
+        flex: 1;
+        min-width: 300px;
+        position: relative;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    /* Efecto Polaroid interactivo para la foto principal */
+    .polaroid {
+        background: white;
+        padding: 15px 15px 50px 15px;
+        border-radius: 4px;
+        box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        transform: rotate(-3deg);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+        position: relative;
+        z-index: 1;
+    }
+
+    .polaroid:hover {
+        transform: rotate(0deg) scale(1.05);
+        box-shadow: 0 20px 40px rgba(64, 224, 208, 0.3);
+    }
+
+    .polaroid img {
+        width: 100%;
+        max-width: 280px;
+        height: auto;
+        border-radius: 2px;
+        border: 1px solid #eee;
+    }
+
+    .polaroid-caption {
+        position: absolute;                                           
+        bottom: 15px;
+        width: calc(100% - 30px);
+        text-align: center;
+        font-family: 'Segoe Print', 'Comic Sans MS', cursive;
+        color: #555;
+        font-weight: bold;
+        font-size: 1.1rem;
+    }
+
+    /* Imagen decorativa flotante superpuesta */
+    .decor-img {
+        position: absolute;
+        width: 200px;  /* ¡Tamaño aumentado! (antes era 150px) */
+        height: 200px;
+        object-fit: cover;
+        top: -100px;    /* Cambiamos 'bottom' por 'top' para que se sitúe arriba */
+        right: -25px;  /* Ajustado para que pise perfectamente la esquina de tu foto */
+        border-radius: 50%;
+        border: 6px solid white; /* Borde blanco un pelín más grueso para destacar */
+        box-shadow: 0 15px 30px rgba(0,0,0,0.25);
+        z-index: 999;   /* Esto garantiza que SIEMPRE esté por delante de la polaroid */
+        animation: floatImg 4s ease-in-out infinite;
+    }
+
+    /* === COLUMNA DERECHA: TEXTOS === */
+    .intro-texto {
+        flex: 1.5;
+        min-width: 300px;
+        background: white;
+        padding: 40px;
+        border-radius: 25px;
+        box-shadow: 0 15px 40px rgba(0,0,0,0.04);
+        position: relative;
+    }
+
+    .badge-bienvenida {
+        display: inline-block;
+        background: var(--menta, #b2f2bb);
+        color: #2d3436;
+        padding: 6px 18px;
+        border-radius: 20px;
+        font-size: 0.85rem;
+        font-weight: bold;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+        letter-spacing: 1px;
+    }
+
+    .intro-texto h3 {
+        font-family: 'Cinzel', serif;
+        color: var(--turquesa, #40e0d0);
+        font-size: 2.2rem;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 3px dashed #e0fcf9;
+        padding-bottom: 10px;
+        display: inline-block;
+    }
+
+    .intro-texto p {
+        font-size: 1.05rem;
+        line-height: 1.7;
+        color: #444;
+        margin-bottom: 15px;
+        text-align: justify;
+    }
+
+    /* Resaltador de Hobbies */
+    .hobbies-box {
+        background: #fffdf7;
+        border-left: 5px solid var(--rojopastel, #ffb3ba);
+        padding: 15px 20px;
+        margin: 25px 0;
+        border-radius: 0 10px 10px 0;
+        font-size: 1rem;
+        color: #555;
+    }
+
+    /* Estilo Premium para la Cita de Nadal */
+    .quote-nadal {
+        font-family: 'Playfair Display', Georgia, serif;
+        font-style: italic;
+        font-size: 1.4rem;
+        line-height: 1.5;
+        color: var(--turquesa-oscuro, #2cb5a8);
+        margin: 35px 0;
+        padding: 25px;
+        background: #f4fcfa;
+        border-radius: 15px;
+        text-align: center;
+        position: relative;
+        box-shadow: inset 0 0 15px rgba(0,0,0,0.02);
+    }
+
+    .quote-nadal::before {
+        content: '"';
+        font-size: 5rem;
+        color: rgba(64, 224, 208, 0.25);
+        position: absolute;
+        top: -15px;
+        left: 20px;
+        font-family: serif;
+    }
+
+    .quote-nadal span {
+        display: block;
+        font-size: 0.95rem;
+        font-weight: bold;
+        color: #888;
+        margin-top: 15px;
+        font-style: normal;
+        font-family: 'Montserrat', sans-serif;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .conclusion-texto {
+        font-weight: 700;
+        color: var(--turquesa-oscuro, #2cb5a8) !important;
+        text-align: center !important;
+        font-size: 1.15rem !important;
+        margin-top: 25px;
+    }
+
+    /* Animaciones Clave */
+    @keyframes fadeInDown {
+        from { opacity: 0; transform: translateY(-20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes floatImg {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+    }
+
+    /* Adaptación para Teléfonos Móviles */
+    @media (max-width: 768px) {
+        .intro-container { flex-direction: column; gap: 30px; }
+        .decor-img { width: 110px; height: 110px; bottom: -15px; right: 0px; }
+        .titulo-animado { font-size: 2.2rem; }
+        .quote-nadal { font-size: 1.2rem; padding: 20px; }
+    }
+
+
+
+
+
+  </style>
+</head>
+<body>
+
+<header>
+    <h1>SIGUEME EL RITMO</h1>
+    <nav>
+        <button onclick="show('inicio')">Inicio</button>
+        <button onclick="show('diario')">Diario</button>
+        <button onclick="show('talleres')">Talleres</button>
+     
+        <button onclick="show('coreo')">Coreografía Final</button>
+        <button onclick="show('galeria')">Galería</button>
+    </nav>
+</header>
+
+<section id="inicio" class="section active">
+    <!-- Título y Subtítulo de bienvenida -->
+    <div class="hero-bienvenida">
+        <h2 class="titulo-animado">¡Bienvenidos a mi Blog 25/26!</h2>
+        <p class="subtitulo-hero">Adéntrate en el mundo de la gimnasia conmigo!☺️✨</p>
+    </div>
+
+    <div class="intro-container">
+        <!-- Parte Visual: Fotos interactivas -->
+        <div class="intro-visual">
+            <div class="polaroid">
+                <img src="https://github.com/epablohervas/siguelritmo/blob/main/portero.png?raw=true" alt="Pablo Hervás">
+                <div class="polaroid-caption">Pablo Hervás</div>
+            </div>
+            <!-- Foto de Pinterest decorativa -->
+            <img src="https://i.pinimg.com/736x/79/de/7f/79de7fae9557d7893f80f1c9b300a527.jpg" class="decor-img" alt="Decoración Rítmica">
+        </div>
+
+        <!-- Parte Textual: Presentación personal -->
+        <div class="intro-texto">
+            <div class="badge-bienvenida">Conóceme un poco más</div>
+          
+            <p>Hola 👋, mi nombre es <strong>Pablo Hervás</strong>, tengo 19 años y soy alumno de primero de carrera de Ciencias de la Actividad Física y el Deporte aquí en Granada. Curso en el grupo B (3R) y es mi primer año en esta asignatura y en esta ciudad tan bonita.</p>
+            
+            <p>Mi deporte desde siempre ha sido el fútbol. Empecé con seis años en la posición de portero y hasta hace un año y medio fue una de mis mayores pasiones. Tuve que dejarlo por numerosas e injustas lesiones. Mi relación con la Gimnasia Rítmica antes de llegar a la carrera era inexistente, y al principio no tenía claro si me gustaría, pero la he disfrutado muchísimo a lo largo del segundo cuatrimestre.</p>
+
+            <div class="hobbies-box">
+                <strong>💡 Mis hobbies:</strong> Pasar tiempo con los míos, ver series y disfrutar de los espacios naturales.
+            </div>
+
+            <blockquote class="quote-nadal">
+                "La motivación es lo que te hace empezar. El hábito es lo que te mantiene."
+                <span>— Rafael Nadal Parera</span>
+            </blockquote>
+            
+            <p class="conclusion-texto">Considero que la disciplina, tanto en el deporte como en la vida, es lo que te hace progresar como ser humano.</p>
+        </div>
+    </div>
+</section>
+<section id="diario" class="section">
+    <h2 style="text-align: center;">📓 MI DIARIO</h2>
+    
+    <div id="vista-dias">
+        <div class="lista-dias">
+            <p style="text-align: center; margin-bottom: 25px; color: #666;">Selecciona un día para leer los secretos que esconden las clases de gimnasia rítmica del grupo 3R.</p>
+            <div class="tarjeta-dia" onclick="showEntry('dia-26-may')"><span>26 de Mayo <span class="badge taller">COREOGRAFÍA FINAL</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-19-may')"><span>19 de Mayo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-14-may')"><span>14 de Mayo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-12-may')"><span>12 de Mayo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-5-may')"><span>5 de Mayo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-30-abr')"><span>30 de Abril</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-28-abr')"><span>28 de Abril</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-23-abr')"><span>23 de Abril <span class="badge taller">TALLER</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-21-abr')"><span>21 de Abril</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-16-abr')"><span>16 de Abril</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-14-abr')"><span>14 de Abril <span class="badge taller">TALLER</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-9-abr')"><span>9 de Abril</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-7-abr')"><span>7 de Abril</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-23-mar')"><span>23 de Marzo <span class="badge teorica">TEÓRICA</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-19-mar')"><span>19 de Marzo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-16-mar')"><span>16 de Marzo <span class="badge teorica">TEÓRICA</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-12-mar')"><span>12 de Marzo <span class="badge taller">TALLER</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-10-mar')"><span>10 de Marzo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-9-mar')"><span>09 de Marzo <span class="badge teorica">TEÓRICA</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-5-mar')"><span>05 de Marzo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-3-mar')"><span>03 de Marzo</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-2-mar')"><span>02 de Marzo <span class="badge teorica">TEÓRICA</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-26-feb')"><span>26 de Febrero</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-24-feb')"><span>24 de Febrero</span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-23-feb')"><span>23 de Febrero <span class="badge teorica">TEÓRICA</span></span><span>Leer ➡</span></div>
+            <div class="tarjeta-dia" onclick="showEntry('dia-19-02')"><span>19 de Febrero <span class="badge primera">✨ PRIMERA CLASE</span></span><span>Leer ➡</span></div>
+        </div>
+    </div>
+</section>
+
+<div id="vista-entrada" style="display: none; max-width: 800px; margin: 0 auto; padding: 0 20px;">
+    <button class="btn-volver" onclick="showDaysList()">⬅ VOLVER</button>
+
+    <div id="dia-26-may" class="entrada">   
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">26 de mayo</span> <span class="badge taller">COREOGRAFÍA FINAL</span>
+        <p>Hoy es un día especial por muchos motivos, por un lado es un día de alegría porque vamos a realizar nuestra actuación de la coreografía final, sin embargo, por otro lado es nuestro último día juntos de gimnasia rítmica😔. 
+        Este día consistía en realizar la coreografía final delante de toda la clase para evaluarnos. Nuestro grupo decidió vestirnos elegantes y con tirantes llamativos con pajaritas de colores.</p> 
+        <img src="COREOFINAL1.jpeg" class="media-content" alt="Foto Coreo Final">
+        <p>Por los colores de pajaritas y tirantes somos: Rosa-Arne; Verde-Pedro; Negro-Pelayo; Naranja-Frigopie(Dani); Amarillo-Martín; Rojo-Braulio; Blanco-Pablo(YO) y juntos somos los PEQUEÑOS GIGANTES.
+        Nuestra canción elegida fue un mix que empezaba con Giant de Calvin Harris y terminaba con una más movida llamada Sorry For Party Rocking de LMFAO. Sinceramente me ha encantado la experiencia, me lo he pasado súper bien y me ha servido para soltarme un poco más corporalmente hablando💃.</p>
+        <iframe src="https://drive.google.com/file/d/1obm64ifW8tj0JeQifBXwhL_XpTuQxU0q/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <span></span>
+            <button class="btn-nav-interno" onclick="showEntry('dia-19-may')">19 de Mayo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-19-may" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">19 de Mayo</span> 
+        <p>Hoy día 19 de mayo de 2026 ha sido la séptima simulación docente impartida en primer lugar por Olivia e Irene y en segundo lugar por Claudia y Marina. La sesión se ha centrado en los aros🌞⭕.
+        En primer lugar, Olivia e Irene propusieron una serie de ejercicios que para mí resultaron muy dinámicos y divertidos. Comenzamos con un juego de persecución en el que el aro servía como zona de salvación. Posteriormente, pasamos a trabajar por parejas, realizando lanzamientos de aro para que el compañero lo recibiera antes de que cayera al suelo o mediante un bote. También practicamos rodamientos del aro por el suelo y por distintas partes del cuerpo, como los brazos o la espalda, lo cual requería mucha coordinación y control corporal. La sesión concluyó con una actividad en la que debíamos imitar las posiciones corporales que las profesoras adoptaban dentro del aro, lo que fomentó la flexibilidad y el equilibrio.
+        En segundo lugar, Claudia y Marina enfocaron su parte en la creación de pequeñas secuencias coreográficas utilizando el aro. Nos dividieron en grupos y nos asignaron la tarea de enlazar varios movimientos previamente aprendidos, como giros del aro en la mano, saltos a través de él y lanzamientos cortos. Esta actividad potenció nuestra creatividad y el trabajo en equipo, obligándonos a sincronizar nuestros movimientos con el ritmo de la música.
+        A nivel personal, esta sesión me ha resultado muy enriquecedora ya que el aro es uno de los aparatos más vistosos de la gimnasia rítmica y ofrece un sinfín de posibilidades motrices. He mejorado mi precisión en los lanzamientos y recepciones, y he disfrutado mucho con el proceso de creación colectiva.</p> 
+        <iframe src="https://drive.google.com/file/d/17bkaL5ClTMJblo0hfo2MDV0TgxOwQj-T/preview" frameborder="0" allowfullscreen></iframe>
+        <img src="https://drive.google.com/file/d/1LcnWzErddt1ZV2dldJrHUdXY6M-RUuAR/preview" class="media-content">
+        <img src="19MAY.2.jpeg" class="media-content" alt="Simulacion 1">
+        <img src="19MAY.3.jpeg" class="media-content" alt="Simulacion 2">
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-26-may')">⬅ 26 de Mayo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-14-may')">14 de Mayo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-14-may" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">14 de Mayo</span> 
+        <p>El día de hoy ha tocado la simulación docente de cuerdas!! La primera parte de la sesión ha sido impartidacpor Arne y Martín. Esta parte de la sesión ha sido algo confusa ya que los juegos y "retos" eran muy teóricos y no tenian una finalidad mayor que imitar todo lo que decía Martín. Además montaron un "tres en raya" que al final por mala gestión no se llegó a jugar. Me quedé con las ganas de competir en ese "tres en raya" pero no se pudo. Luego la segunda parte de la sesión la impartieron unos compañeros de otro grupo llamados Pablo y Jose. Relizaron una coreo bastante elaborada y super bien explicada y planteada aunque en lo personal algo compleja. Aquí está la ultima versión del ensayo general de esta coreografía con cuerdas tan guay!!!
+Por último ,entre grupos, tuvimos que montar una coreografía con una canción concreta y temática de vaqueros. Al final la mejor coreografía entre los 3 grupos, ganaría un paquete de bombones de kinder!🫨​😋. Aqui dejo el video de la actuación de los VAQUEROS...🤠🤠🤠
+Al final el resultado para nuestro grupo fue...... la medalla de bronce🥉​. Nos quedamos con las ganas de ese premio tan dulce.😞​🙈​​</p> 
+     <iframe src="https://drive.google.com/file/d/1bvfD08-S3Yzg_1P1kB_q-P2tkPgPbwqU/preview" frameborder="0" allowfullscreen></iframe>
+     <iframe src="https://drive.google.com/file/d/1AfUCFv-5u2fuS4nStW3FPlnnaNWrNTZT/preview" frameborder="0" allowfullscreen></iframe>
+
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-19-may')">⬅ 19 de Mayo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-12-may')">12 de Mayo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-12-may" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">12 de Mayo</span> 
+        <p>La sesión del día de hoy ha sido la quinta simulación docente centrada en las pelotas🏀. En primer lugar, los profesores han propuesto ejercicios de familiarización con el objeto: botes con la mano derecha e izquierda, recepciones con dos manos y con una sola, rodamientos de la pelota por los brazos y la espalda, etc. Posteriormente, hemos pasado a trabajar en parejas, realizando pases de pecho, picados y por encima de la cabeza, introduciendo desplazamientos laterales y giros antes de recibir el balón.
+        La segunda parte ha sido más lúdica y competitiva. Nos han dividido en grupos y debíamos realizar una pequeña coreografía utilizando los elementos aprendidos previamente, integrando además un programa de televisión llamado Got Talent📺, donde un grupo exponía su coreografía y los demás compañeros debían evaluarla haciendo de jurado. Ha sido una dinámica muy divertida que ha fomentado la creatividad y la cohesión grupal.
+        En resumen, una sesión muy completa que me ha servido para mejorar mi coordinación óculo-manual y para aprender nuevas formas de trabajar la expresión corporal a través de un objeto tan cotidiano como es una pelota. Os dejo por aquí un vídeo resumen de la sesión.</p> 
+        <iframe src="https://drive.google.com/file/d/1RExZexOVzsGvl8Dg0tJocO7ip4sXUfId/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-14-may')">⬅ 14 de Mayo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-5-may')">5 de Mayo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-5-may" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">5 de Mayo</span> 
+        <p>Hoy día 5 de mayo ha tocado la cuarta simulación docente, centrada en los giros🌀. La primera parte de la sesión ha sido impartida por Pedro y Ramón. Hemos comenzado realizando ejercicios de equilibrio sobre un pie (passé, arabesque) para posteriormente intentar introducir el giro de 180 y 360 grados. También hemos trabajado la importancia de la mirada fijando un punto para no marearnos. Sinceramente, los ejercicios me me han parecido un poco confusos y difíciles de ejecutar, ya que se requería una técnica de base muy sólida que no poseemos, lo que provocaba frustración en algunos compañeros.
+        La segunda parte ha sido dirigida por Lolo y Lucas. Su propuesta ha sido algo más dinámica, planteando juegos por equipos donde debíamos desplazarnos realizando diferentes tipos de giros (sobre rodillas, sentados, en el sitio) y congelar la postura al parar la música. Aunque ha sido más divertida, sigo pensando que la explicación de la técnica de giro podría haber sido más clara para facilitarnos el aprendizaje.
+        A pesar de la dificultad, valoro positivamente la sesión ya que los giros son un elemento fundamental en la gimnasia rítmica y es importante experimentar la complejidad que conllevan. Os dejo por aquí un vídeo resumen de mis caídas e intentos de giro.</p> 
+        <iframe src="https://drive.google.com/file/d/17KxebON2ir9nbD-E-P7ym7ypzKruLTZ3/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-12-may')">⬅ 12 de Mayo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-30-abr')">30 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-30-abr" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">30 de Abril</span> 
+        <p>¡¡¡Hoy es el día de nuestra simulación docente!!! Hoy he sido junto a mi compañero Álex el profesor de gimnasia rítmica🧑‍🏫. Nuestra sesión estaba centrada en los saltos, un elemento clave en este deporte. Estábamos bastante nerviosos pero con muchas ganas de hacerlo bien.
+        Comenzamos con un calentamiento dinámico con juegos como "el semáforo", donde los compañeros debían desplazarse según el color indicado y realizar un salto específico (vertical, agrupado, de extensión) al ponerse en rojo. Posteriormente, pasamos a la parte principal donde explicamos la técnica del salto de zancada (grand jeté) y del salto de tijera, utilizando colchonetas y bancos suecos para facilitar el impulso y la fase de vuelo. Propusimos un juego por parejas llamado "el dominó bailarín" para trabajar la sincronización.
+        Para terminar la sesión realizamos una pequeña coreografía grupal enlazando tres tipos de saltos diferentes al ritmo de una música movida. Creo que la sesión ha salido bastante bien, los compañeros han participado con entusiasmo y hemos recibido un feedback muy positivo por parte de la profesora, destacando nuestra organización y la claridad en las explicaciones. ¡¡Objetivo cumplido!! Os dejo por aquí el grabado por Ismael en la parte de su sesión donde frigo me coge y hacemos un paso bastante vistoso por el aire.🤭</p> 
+        <iframe src="https://drive.google.com/file/d/12PZq31UfLpODCRfk9A_R_dj74duKlBzG/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-5-may')">⬅ 5 de Mayo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-28-abr')">28 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-28-abr" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">28 de Abril</span> 
+        <p>La clase del día de hoy ha sido un poco diferente a lo que estamos acostumbrados, ya que la profesora ha dado un paso al margen para que dos grupos de alumnos den la clase en la primera simulación del cuatrimestre.
+La primera parte de la sesión la han realizado Daniel Alvarez, Julián y Javi. La verdad que han intentado hacerlo lo mejor que han podido, pero no me ha gustado en exceso ya que había juegos de competición como relevos en los cuales no primaba la velocidad si no la técnica , cosa que veo que carecía de sentido.
+La segunda parte la han llevado a cabo Daniel Jimenez y Braulio con una coreografía elaborada y divertida a la par de creativa. En esta parte me he divertido bastante y colaborado con mis compañeros para que saliera lo mejor posible. 🕺​🤌​ A continuación dejo por aquí dos vídeos de la sesión de hoy:</p> 
+        <iframe src="https://drive.google.com/file/d/18fJgqn5ikaAA7CsgwZldldsi-kbM9R7A/preview" frameborder="0" allowfullscreen></iframe>
+        <iframe src="https://drive.google.com/file/d/1ghDjWFi6UoUTpSLTNyOUiRtsPyYs5A1O/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-30-abr')">⬅ 30 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-23-abr')">23 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-23-abr" class="entrada">   
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">23 de Abril</span> <span class="badge taller">TALLER</span>
+        <p>Hoy es un gran día , es... nuestro tercer taller!!!😄​🤭​ Hemos estado ensayando bastante duro con mis compañeros y perfeccionando los pasos de baile durante los días previos. He trabajado muy agusto con este equipo formado por Dani, Braulio, Pelayo y yo porque todos hemos estado muy comprometidos y dándolo todo con mucho entusiasmo Y ESO SE NOTA. Cada uno ha aportado cosas diferentes como la música elegida por Pelayo (un acierto total), "los outfits", diferentes perspectivas, nuevas ideas, etc. Elegimos los aros como elemento ya que son un elemento super vistoso y fácil de manejar. Aquí teneís nuestra actuación, a título personal es una de mis mejores coreografías hasta la fecha, espero que esto siga a maás!!!!😆​🔥​🔝​</p> 
+          <iframe src="https://drive.google.com/file/d/1yoqZ0lRunXd-_-cmyXTpvnJaVDmiH7Gl/preview" frameborder="0" allowfullscreen></iframe>
+
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-28-abr')">⬅ 28 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-21-abr')">21 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-21-abr" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">21 de Abril</span> 
+        <p>En la clase de hoy nos hemos basado en la coreografía conjunta del otro día pero icluyendo el elemento de las pelotas 🏐👌​. Con los mismos  grupos del martes 16, en nuestro caso con algunos fichajes. La coreo salió algo mejor que la del martes pasado. Incluimos varias formas musicales como el "canon" y la "fuga". En general bastante contento con la actuación del grupo pero con ganas de seguir mejorando y puliendo nuestros puntos débiles de manera grupal y de manera personal.💪​😉​</p> 
+        <iframe src="https://drive.google.com/file/d/1Vaa-aNCLKwP6-O5GORG0Hgn2IgoKNEzB/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-23-abr')">⬅ 23 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-16-abr')">16 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-16-abr" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">16 de Abril</span> 
+        <p>Hoy hemos tenido que realizar una coreografía grupal usando el elemento de "pregunta y respuesta" que al principo no sabíamos muy bien lo que teníamos que hacer​. Pero poco a poco con algun fallo que otro pudimos conseguir hacer algo similar a lo que nos pedía la profesora. La coreo no salió lo más coordinada posible pero se intentó y salió lo mejor que pudimos. Aquí dejo el vídeo de la exposición de nuestra coreo 🫣.</p> 
+        <iframe src="https://drive.google.com/file/d/1MLYP1d3rTBSxYot5zRQW8gfPKxvUi203/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-21-abr')">⬅ 21 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-14-abr')">14 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-14-abr" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">14 de Abril</span> <span class="badge taller">TALLER</span>
+        <p>Hoy es el día de nuestro segundo taller!!! Lo hemos estando preparando con cariño comprando las cintas rojas y mallas para ir todos conjuntados, ensañando en horas libres y concretando juntos por Whatsapp los pasos de baile y las horas para quedar. En clase hemos estando puliendo lo que más nos costaba, los giros y la coordinación grupal. Al final de la clase todos los grupos expusieron su coreografía y la verdad que muy currado todo, tanto los pasos como el vestuario. Nosotros fuimos los últimos y aquí teneís nuesra increíble actuación!!!😌​🤭​🤗​</p> 
+        <iframe src="https://drive.google.com/file/d/1y2aWDZ_3fngGq3ogk4upAtw0KE_ZEE_z/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-16-abr')">⬅ 16 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-9-abr')">9 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-9-abr" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">9 de Abril</span> 
+        <p>Hoy hemos tenido una sesión súper innovadora y tecnológica en el pabellón de gimnasia📲. La profesora ha colocado varios códigos QR pegados en las espalderas y paredes del gimnasio. Nos hemos dividido en grupos y, al escanear cada código con el móvil, nos redirigía a un vídeo corto de YouTube donde se mostraba la ejecución técnica correcta de un elemento específico con aparatos (cuerdas y aros).
+        La dinámica consistía en visualizar el vídeo, analizar los pasos (posición de las manos, impulso, recepción) e intentar imitarlo y reproducirlo de la forma más fiel posible con nuestro propio cuerpo. Hemos practicado saltos cruzados con cuerda, lanzamientos de aro con el pie y rodamientos por los brazos. Ha sido una forma de autoaprendizaje muy visual y autónoma que nos ha permitido avanzar a nuestro propio ritmo.
+        La segunda parte de la clase ha consistido en una especie de "Cluedo" o juego de pistas dinámico en grupo, donde para conseguir la siguiente pista debíamos demostrar ante la profesora que habíamos dominado el elemento técnico del código QR anterior. Ha sido súper divertido y motivador. Me parece una herramienta didáctica excelente para aplicar en el futuro como docentes de educación física.</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-14-abr')">⬅ 14 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-7-abr')">7 de Abril ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-7-abr" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">7 de Abril</span> 
+        <p>En la sesión práctica de hoy hemos tenido nuestro primer contacto con las pelotas en el pabellón de gimnasia rítmica. Sinceramente, era uno de los aparatos que más ganas tenía de probar, ya que al tener experiencia en deportes de equipo como el fútbol, pensaba que se me daría mejor el manejo del balón⚽. Sin embargo, la técnica en rítmica es totalmente diferente y muy estricta: la pelota no se puede agarrar con los dedos, sino que debe descansar sobre la palma de la mano abierta mediante una presión constante y movimientos fluidos del cuerpo.
+        Hemos comenzado realizando botes en el suelo siguiendo diferentes ritmos musicales (negras y corcheas), alternando la mano derecha y la izquierda. Después hemos practicado los rodamientos, que consisten en hacer deslizar la pelota por los brazos, el pecho o las piernas sin que se caiga. Esto requiere una sensibilidad y un control de la postura corporal brutales. Para terminar, hemos hecho lanzamientos hacia arriba intentando recepcionar la pelota de forma limpia sin amortiguar con ruido contra el cuerpo.
+        Me ha parecido una clase muy divertida pero exigente físicamente, sobre todo para las muñecas y los antebrazos. Me voy a casa con muchas ganas de seguir practicando. Os dejo por aquí un vídeo tutorial que nos enseñó la profesora para practicar los rodamientos en casa.</p> 
+        <iframe src="https://drive.google.com/file/d/1N4XkMx0pidBVTslVmGIdLCuAtcJGhI5u/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-9-abr')">⬅ 9 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-23-mar')">23 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-23-mar" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">23 de Marzo</span> <span class="badge teorica">TEÓRICA</span>
+        <p>Hoy la sesión ha sido teórica y se ha desarrollado en el aula de informática💻. Nos hemos centrado en el análisis técnico de vídeos de competiciones de gimnasia rítmica de nivel internacional (Juegos Olímpicos y Mundiales). El objetivo era aprender a identificar visualmente los diferentes elementos de dificultad corporal que se puntúan en el código de la FIG.
+        La profesora nos ha facilitado una plantilla de observación y debíamos rellenarla analizando de forma individual dos ejercicios completos: uno de individuales con cinta y otro de conjuntos con aros y pelotas. Teníamos que anotar el número de saltos, giros, equilibrios y elementos de flexibilidad realizados, así como evaluar la sincronización musical y la originalidad de las transiciones coreográficas.
+        Esta clase me ha parecido fundamental para abrir los ojos ante el nivel de exigencia real de este deporte. Ver a cámara lenta la precisión milimétrica con la que las gimnastas lanzan el aparato a más de 10 metros de altura mientras realizan una voltereta en el suelo y lo reciben con los pies es simplemente alucinante. Me ayuda a valorar mucho más el trasfondo técnico de la disciplina de cara a las sesiones prácticas.</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-7-abr')">⬅ 7 de Abril</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-19-mar')">19 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-19-mar" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">19 de Marzo</span> 
+        <p>¡Seguimos avanzando en las sesiones prácticas dentro del tapiz! Hoy la clase se ha centrado específicamente en la técnica fundamental de los desplazamientos en la gimnasia rítmica, prestando especial atención a la colocación correcta del cuerpo: el empeine siempre estirado al máximo, las piernas firmes y los brazos acompañando de forma fluida el movimiento siguiendo las líneas coreográficas tradicionales.
+        Hemos comenzado realizando series intensas de pasos cruzados, chassés y carreras ligeras cruzando el pabellón en diagonales espaciales, siempre intentando mantener una postura erguida y elegante. Posteriormente, la profesora ha introducido giros simples sobre un pie (giros en passé) combinados con pequeños saltos de extensión al final de la frase musical. Ha sido un trabajo muy exigente para los gemelos y los tobillos, ya que requiere mucha fuerza y estabilidad para no perder el equilibrio al frenar la inercia del movimiento.
+        Lo que más me cuesta sigue siendo disociar el movimiento de las piernas (que debe ser preciso y potente) de la expresión de la cara y los brazos (que debe transmitir ligereza y tranquilidad absoluta). Es un reto mental constante, pero noto que sesión a sesión voy ganando en soltura y ritmo. Os dejo un vídeo de la serie de desplazamientos que hemos practicado hoy por parejas.</p> 
+        <iframe src="https://drive.google.com/file/d/1NTKiHlFZ6iAbnhaxzH9d39zkzqaEN9SX/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-23-mar')">⬅ 23 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-16-mar')">16 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-16-mar" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">16 de Marzo</span> <span class="badge teorica">TEÓRICA</span>
+        <p>Hoy hemos tenido nuestra tercera sesión teórica en el aula habitual. El tema principal ha sido el sorteo de las temáticas y los grupos para las "Simulaciones Docentes", que son las clases prácticas que tendremos que impartir nosotros mismos como profesores al resto de compañeros en las próximas semanas. A mi compañero Álex y a mí nos ha tocado diseñar una sesión centrada en los Saltos! 🤩
+        La segunda parte de la clase ha sido un taller práctico de transcripción musical. La profesora nos ha puesto una canción pop actual (Don't Start Now de Dua Lipa) y, utilizando papel pautado adaptado, debíamos realizar la transcripción completa de los primeros 30 segundos identificando: el compás (4/4), la estructura de frases musicales (bloques de 8 tiempos), los acentos fuertes de la melodía y sugerir por escrito qué tipo de movimientos corporales encajarían mejor en cada bloque (desplazamientos, ondas, detenciones estáticas).
+        Me ha parecido una actividad súper útil y con una aplicación directa para cuando tengamos que diseñar nuestra propia coreografía final del cuatrimestre, ya que te enseña a "escuchar" la música con ojos de coreógrafo y no como un simple oyente. Os dejo por aquí el videoclip de la canción analizada por si queréis intentar escuchar los bloques de 8 tiempos.</p> 
+    
+        <a href="https://www.youtube.com/watch?v=oygrmJFKYZY" target="_blank">Don't Start Now de Dua Lipa</a>        
+
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-19-mar')">⬅ 19 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-12-mar')">12 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-12-mar" class="entrada"> 
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">12 de Marzo</span> <span class="badge taller">TALLER</span>
+
+        <p>La clase de hoy me ha gustado mucho, ya que al entrar he visto como muchos grupos estaban organizándose llevando cada grupo su estilo y ropa en conjunto (unos más elaborados y otros menos), veía la implicación de los grupos en este taller.
+Mi grupo no teníamos una organización ni una preparación muy elaborada porque no habíamos ensayado previamente. Además se han añadido dos miembros más que no estaban incluidos desde un principio, por lo que ha sido algo caótico, pero con ensayo  y a base de repetición yo creo que hemos conseguido desenvolvernos bien.  La profesora nos ha ayudado bastante, nos ha dado ideas, nos ha corregido… Y al final toda la coreo y los ejercicios han ido saliendo muy bien, la verdad que nos hemos ido contentos, nos ha gustado bastante este taller!!!!😁 Para el próximo pretendemos mejorar estos aspectos de organización previa para que salga lo mejor posible.💪</p> 
+        <iframe src="https://drive.google.com/file/d/18UIiacS50-MOAkRSRDjtOBnjuqhVzehY/preview" frameborder="0" allowfullscreen></iframe>
+
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-16-mar')">⬅ 16 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-10-mar')">10 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-10-mar" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">10 de Marzo</span> 
+        <p>En la sesión de hoy hemos dado un paso más allá en la complejidad de los ejercicios prácticos en el pabellón de gimnasia. La clase se ha estructurado en torno al concepto de **"Frase Coreográfica Individual y Colectiva"**. El objetivo era aprender a enlazar de forma fluida diferentes tipos de pasos de danza (ballet clásico y danza moderna) con elementos acrobáticos básicos en el suelo (rodamiento atrás, equilibrios de tres apoyos, etc).
+        Hemos comenzado realizando de forma individual una diagonal de movimientos combinando zancadas ligeras con ondas de tronco y brazos. La profesora ponía mucho énfasis en que las transiciones entre un paso y otro no fueran bruscas, sino que parecieran un único movimiento continuo🌊. En la segunda parte de la sesión, nos hemos agrupado por parejas para intentar sincronizar nuestras frases individuales y crear un efecto espejo en el tapiz.
+        Para terminar la clase, hemos realizado un bloque de acondicionamiento físico específico muy intense enfocado en el "core" (abdominales, lumbares y planchas) y en la flexibilidad de apertura de piernas (stretching). Es una parte dura pero fundamental en este deporte para poder ejecutar los saltos y giros con amplitud y evitar lesiones en la espalda. Noto agujetas en músculos que ni sabía que existían, ¡pero la motivación sigue intacta!</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-12-mar')">⬅ 12 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-9-mar')">09 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-9-mar" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">09 de Marzo</span> <span class="badge teorica">TEÓRICA</span>
+        <p>Hoy hemos tenido nuestra segunda clase teórica en el aula habitual de la facultad de ciencias del deporte. El tema principal ha sido el marco histórico y reglamentario de la gimnasia rítmica. La profesora nos ha explicado la evolución de esta disciplina desde sus orígenes como "gimnasia moderna" orientada a la expresión corporal de las mujeres a principios del siglo XX, hasta su reconocimiento oficial por la FIG (Federación Internacional de Gimnasia) y su debut olímpico en Los Ángeles 1984. 
+        También hemos analizado los aspectos técnicos de los aparatos oficiales (cuerda, aro, pelota, mazas y cinta): sus dimensiones, pesos reglamentarios según categorías y las funciones específicas que cumple cada uno en el tapiz de competición de 13x13 metros. Por último, nos ha introducido de forma muy general al complejo mundo del "Código de Puntuación", explicando cómo los jueces evalúan la dificultad corporal (saltos, giros, equilibrios), la dificultad de aparato (lanzamientos, recepciones) y la ejecución artística.
+        Ha sido una clase muy densa en cuanto a contenidos teóricos pero indispensable para entender la rigurosidad técnica que hay detrás de los movimientos que luego practicamos en el pabellón. Al final de la sesión hemos realizado un pequeño test tipo cuestionario individual para afianzar los conceptos clave de la historia de la gimnasia.</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-10-mar')">⬅ 10 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-5-mar')">05 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-5-mar" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">05 de Marzo</span> 
+        <p>Tercera sesión práctica de gimnasia rítmica dentro del pabellón deportivo. Hoy hemos profundizado en el concepto del **"Espacio y la Energía en el Movimiento"**. La profesora nos ha propuesto dinámicas individuales y grupales para experimentar cómo influye la velocidad y la fuerza de nuestras acciones en la expresividad corporal.
+        Comenzamos realizando desplazamientos por todo el tapiz adaptándonos al pulso de la música (andar, trotar, realizar giros ligeros), pero con la condición de cambiar radicalmente de nivel espacial (alto: de puntillas; medio: de rodillas; bajo: cuerpo arrastrándose por el suelo) según las indicaciones visuales que nos daba la profesora sobre la marcha. Ha sido un ejercicio excelente para ganar conciencia espacial y control del equilibrio general de nuestro cuerpo.
+        Posteriormente, trabajamos por grupos de 4 personas en una dinámica creativa llamada "la escultura humana en movimiento". Teníamos que enlazar de forma fluida tres figuras estáticas grupales de acrosport, asegurándonos de que las transiciones entre ellas fueran lentas y estéticas, como si estuviéramos modelando arcilla en el tapiz🏺. Esta actividad ha potenciado mucho la confianza entre los compañeros y nos ha ayudado a perder la vergüenza inicial a la hora de tocarnos y apoyarnos mutuamente para formar estructuras. Os dejo un vídeo corto de una de nuestras transiciones.</p> 
+        <iframe src="https://drive.google.com/file/d/1IN-suce7GpsVDD2a_uKZ5Z0YPIpVOQGF/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-9-mar')">⬅ 09 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-3-mar')">03 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-3-mar" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">03 de Marzo</span> 
+        <p>Hoy toca clase práctica de nuevo!😛 Para calentar motores, realizamos la dinámica de clases anteriores. Vamos desplazándonos por el tapiz al pulso de la música. Pero para introducir algo más de las clases teóricas lo hemos hecho con las figuras musicales. La profesora decía con la canción en reproducción al ritmo y a la figura musical que teníamos que ir. A negras (a tiempo), a corcheas (a doble tiempo), a semicorcheas (al doble del doble tiempo), a blancas (a la mitad del tiempo) y a redondas (a la mitad de la mitad del tiempo). Esto no ha supuesto para mi una gran dificultad, aunque había muchas veces que no escuchaba y gracias a que me fijaba en mis compañeros podía seguir el hilo de la actividad. Luego nos pidió que fuésemos de manera libre por la zona a destiempo (evitando guiarnos por el ritmo de la canción). Era el momento de disociar el pulso de la canción con nosotros y donde realmente se puso la cosa difícil. Seguir el ritmo es cosa fácil que sale de manera innata, pero no llevarlo, ha sido un verdadero reto.
+A continuación nos pusimos todos en un círculo a chocar las manos con el compañero de la izquierda y derecha.Al pasar un rato la dificultad aumentó porque la profesora empezó a introducir elementos externos como pelotas o aros y teníamos que pasarlos a un compañero según la dirección en la que venía y al ritmo de la música.Este "juego" fue bastante divertido y dinámico porque ver a todo el mundo concentrado y riendo a la vez ha sido un gran momento la verdad.
+Más adelante, ya por parejas, debíamos proponer varios pasos de baile de cuatro tiempos para realizarlo al ritmo y luego a doble ritmo. Aquí te das cuenta que no sirve cualquier paso, debe ser eficaz y rápido para poder realizarlo a doble tiempo y seguido.
+Para finalizar la sesión hemos dividido la clase en cuatro para inventar cuatro secuencias libres y añadiéndole sonidos a cada secuencia de pasos. La música se reproduce y cada grupo empieza con una frase de diferencia entre uno y otro. La verdad que nuestro grupo ha sido el "graciosete" y el que generado las risas de toda la clase. jejejejejejej 🤣🤣</p> 
+        <iframe src="https://drive.google.com/file/d/1ozwHEGP-hWcJCaqgAyYx9REC0trBSaFz/preview" frameborder="0" allowfullscreen></iframe>
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-5-mar')">⬅ 05 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-2-mar')">02 de Marzo ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-2-mar" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">02 de Marzo</span> <span class="badge teorica">TEÓRICA</span>
+        <p>Hoy lunes hemos tenido nuestra primera clase teórica oficial de la asignatura de Gimnasia Rítmica en el aula magna de la universidad de ciencias del deporte. La sesión ha sido principalmente introductoria y conceptual, centrada en sentar las bases teóricas de lo que trabajaremos a nivel práctico durante todo el cuatrimestre académico.
+        La profesora nos ha explicado la importancia de la música como el pilar fundamental e indispensable sobre el que se debe construir cualquier coreografía o ejercicio de gimnasia rítmica de forma profesional. Hemos aprendido a diferenciar conceptos básicos musicales como el **Pulso** (el latido constante e invariable de la música), el **Acento** (los tiempos fuertes que destacan dentro de la melodía) y el **Ritmo** (la combinación de sonidos y silencios estructurados en el tiempo). También nos ha introducido de forma conceptual al uso práctico de las *Transcripciones Musicales y Corporales*, unas plantillas gráficas especiales donde los coreógrafos dibujan de forma esquemática la estructura de la música asociada a los movimientos corporales y desplazamientos espaciales que deben realizar las gimnastas en cada segundo exacto de la canción.
+        Me ha parecido una clase muy interesante ya que, como futbolista, nunca me había parado a analizar la música de una forma tan técnica y matemática aplicada al movimiento del cuerpo humano. Nos han mandado una pequeña tarea individual para el próximo día que consiste en elegir una canción libre de nuestra preferencia, escucharla detenidamente e intentar identificar de forma escrita el pulso base y contar cuántas frases musicales completas de 8 tiempos tiene el primer minuto del tema musical seleccionado.</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-3-mar')">⬅ 03 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-26-feb')">26 de Febrero ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-26-feb" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">26 de Febrero</span> 
+        <p>¡¡Hoy por fin hemos estrenado el pabellón de gimnasia artística y rítmica del complejo deportivo universitario!! Tenía muchísimas ganas de pisar el tapiz oficial de competición por primera vez de forma real. La sesión práctica de hoy ha estado enfocada en el aprendizaje práctico de las **"Frases Rítmicas Básicas y su aplicación coreográfica inicial"**.
+        La profesora ha comenzado la clase organizándonos en filas indias a lo largo de todo el tapiz. Hemos realizado ejercicios de calentamiento articular dinámico guiados por el ritmo marcado por unas palmadas continuas. La actividad principal ha consistido en aprender a encadenar de forma fluida pasos de baile sencillos (paso-toca, chassés laterales, pequeños saltos verticales de extensión) estructurados en bloques fijos de frases musicales de 8, 4 y 2 tiempos de duración. 
+        Para mí, la parte más divertida y desafiante de la sesión ha sido un juego de imitación por parejas llamado "el espejo rítmico", donde un compañero inventaba una frase de movimientos libres durante 8 tiempos musicales exactos y el otro compañero debía replicarla de forma idéntica manteniendo el mismo tempo rítmico sin perder el pulso de la música de fondo. Me ha costado un poco coordinar los movimientos de los brazos con los de las piernas al principio, ya que tiendo a ser un poco rígido corporalmente debido al entrenamiento de fuerza habitual del fútbol, pero la profesora me ha corregido la postura indicándome que relajara los hombros y extendiera más las puntas de los pies. ¡¡Me lo he pasado genial y he terminado la clase con una sonrisa enorme de oreja a oreja y con muchas ganas de seguir aprendiendo en la próxima sesión práctica!!</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-2-mar')">⬅ 02 de Marzo</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-24-feb')">24 de Febrero ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-24-feb" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">24 de Febrero</span> 
+        <p>Hoy es el día de mi primera clase práctica!!!! Hicimos dinámicas de grupo con gestos un poco artísticos para conocernos mejor entre compañeros y aprender a expresarnos.Me ha gustado la primera dinámica de imitación, ya que cada uno hacia un gesto que lo identificara o de algo que le gustaba y así los demás también lo hemos podido identificar al compañero para recordar mejor los nombres (que de la mayoría lo recuerdo del primer cuatrimestre).
+Después pasamos a una dinámica de ritmo de la música y expresiones corporales, mezclándonos con la gente de clase y mirándonos a la cara para ver nuestras expresiones y emociones trasmitidas. Fue difícil mantener la concentración porque al mirarnos nos reíamos todos al ser algo tan simple como mirarnos a las caras.
+Para finalizar la clase, en grupos, hemos realizamos una pequeña presentación libre, con gestos, bailes, saltos y sin hablar. Cada grupo creo su presentación y la expuso a la clase. Momento muy guay y divertido para terminar la clase de l mejor manera!!!👏☺️🫡.</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-26-feb')">⬅ 26 de Febrero</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-23-feb')">23 de Febrero ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-23-feb" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">23 de Febrero</span> <span class="badge teorica">TEÓRICA</span>
+        <p>Primer día de Gimnasia Rítmica "oficial" TEÓRICA. Tenía ganas de comenzar la asignatura pero no por la parte de la gimnasia ni por la parte de las coreografías sino por la parte de la música y el ritmo. Además tengo ilusión en ver como mejoro y aprendo cosas de este deporte que si no fuera por esta asignatura quizá nunca hubiera visto. En lo personal, creo que no va a ser uno de los deportes en lo que mejor me voy a desenvolver, pero,  con esfuerzo y empeño voy a observar una perspectiva diferente a una de las cosas más bonitas que existen como es el mundo del deporte.✨🏃‍♂️🏋️⛹️‍♂️
+En esta clase Esther nos explicó que la gimnasia rítmica es música y movimiento. La música se divide en ritmo, melodía y armonía. Las canciones no se eligen para estar de fondo, cuentan una historia, generan una idea y si no hay expresión no estamos transmitiendo nada.
+Existe el ritmo interno, externo y el escénico. Y por último,existen lo que se llaman "beats" que 1 frase son 8 beats y el primer beat de cada frase es el beat fuerte, que una serie o bloque musical es el conjunto de 4 frases musicales y que hay diferentes tipos de compases que componen diferentes estilos musicales como el vals de 3/4 o el merengue y el paso doble de 2/4. Esto ha sido la clase teórica de hoy donde se me abre un mundo nuevo donde aprender!!!🌎</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-24-feb')">⬅ 24 de Febrero</button>
+            <button class="btn-nav-interno" onclick="showEntry('dia-19-02')">19 de Febrero ➡</button>
+        </div>
+    </div>
+
+    <div id="dia-19-02" class="entrada">
+        <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;">19 de Febrero</span> <span class="badge primera">✨ PRIMERA CLASE</span>
+        <p>Hola, es la primera vez que estoy escribiendo en este blog porque es mi primera clase. Ha sido una clase teórica de introducción en la que me he puesto al día con los nuevos contenidos y con todo lo que me voy a encontrar durante estos próximos meses, siendo sincero este deporte nunca me ha llamado especialmente la atención (quizá sean los prejuicios de la sociedad). Pero quizá encuentre algo de lo que sacar partido, disfrutar y aprovechar durante este periodo. La dinámica de la clase me ha parecido bastante guay y si tuviera que definir este deporte de primeras lo definiría como estético y musical.</p> 
+        <div class="navegacion-interna">
+            <button class="btn-nav-interno" onclick="showEntry('dia-23-feb')">⬅ 23 de Febrero</button>
+            <span></span>
+        </div>
+    </div>
+</div>
+
+<section id="talleres" class="section">
+
+    <div class="talleres-container">
+
+        <h2 class="titulo-talleres">🤸🏻‍♀️​🤸🏽‍♀️ Mi Coreografía y Talleres 🤸🏽‍♀️🤸🏻‍♀️​</h2>
+<div class="decoracion-izquierda"></div>
+<div class="decoracion-derecha"></div>
+        <div class="grid-talleres">
+
+            <div class="card-taller" onclick="show('diario'); setTimeout(()=>showEntry('dia-12-mar'),300)">
+                <div class="numero">01</div>
+                <h3>Taller 1</h3>
+                <p>12 de Marzo</p>
+            </div>
+
+            <div class="card-taller" onclick="show('diario'); setTimeout(()=>showEntry('dia-14-abr'),300)">
+                <div class="numero">02</div>
+                <h3>Taller 2</h3>
+                <p>14 de Abril</p>
+            </div>
+
+            <div class="card-taller" onclick="show('diario'); setTimeout(()=>showEntry('dia-23-abr'),300)">
+                <div class="numero">03</div>
+                <h3>Taller 3</h3>
+                <p>23 de Abril</p>
+            </div>
+
+            <div class="card-taller especial" onclick="show('diario'); setTimeout(()=>showEntry('dia-26-may'),300)">
+                <div class="numero">★</div>
+                <h3>Coreografía Final</h3>
+                <p>26 de Mayo</p>
+            </div>
+
+        </div>
+
+        <div class="separador-talleres"></div>
+
+        <h2 class="titulo-ensayos">🎬 Ensayos</h2>
+
+        <p class="texto-ensayos">
+         Aquí se puede ver el trabajo detrás de una coreografía y las "tomas falsas" de nuestros talleres y Coreografía Final.
+        </p>
+
+        <div class="grid-ensayos">
+
+            <div class="video-ensayo"> <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;"></span> <span class="badge taller">COREOGRAFÍA FINAL</span>
+               <iframe src="https://drive.google.com/file/d/14YoyA6pZAeBZ99z_d_JA9V9p6tPMiqqa/preview" frameborder="0" allowfullscreen></iframe>
+
+            </div>
+
+            <div class="video-ensayo"> <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;"></span> <span class="badge taller">TALLER 3</span>
+
+                <iframe src="https://drive.google.com/file/d/1hBUesZFJfSh2Ix5Ii3tmcUW51r0M5TYz/preview" frameborder="0" allowfullscreen></iframe>
+
+            </div>
+
+            <div class="video-ensayo"> <span style="font-weight: bold; color: var(--turquesa); font-size: 1.2rem;"></span> <span class="badge taller">TALLER 2</span>
+               <iframe src="https://drive.google.com/file/d/13FiFRVLMinXs53ryBRbwUCDD0MN55XLG/preview" frameborder="0" allowfullscreen></iframe>
+
+            </div>
+
+
+    </div>
+
+</section>
+
+
+<section id="coreo" class="section">
+
+<div class="hero-coreo">
+
+    <div class="overlay-coreo">
+
+        <span class="fecha-coreo">
+            26 MAYO 2026
+        </span>
+
+        <h1>
+            PEQUEÑOS GIGANTES
+        </h1>
+
+        <p>
+           "Ninguno de nosotros es tan bueno como todos nosotros juntos." — Ray Kroc
+        </p>
+
+    </div>
+
+</div>
+
+<div class="contenido-coreo">
+
+    <h2>Nuestra Actuación en la Coreografía Final</h2>
+
+    <p>
+     El día 26 de Mayo del año 2026 fue un día que no olvidaré con facilidad. No fue un día cualquiera. Por un lado, sentía la emoción y los nervios de saber que ibamos a representar nuestra coreografía final delante de toda la clase; por otro, me invade una sensación de nostalgia porque este también es nuestro último día juntos en esta asignatura como es gimnasia rítmica. 
+
+Cuando llegué al pabellón y vi a todo mi grupo preparado, me di cuenta de lo lejos que habíamos llegado. Lo que empezó hace días e incluso semanas con pasos inseguros, errores, risas y ensayos interminables, estaba a punto de convertirse en una actuación completa. Detrás de cada movimiento había horas de trabajo, de correcciones, de paciencia (mucha paciencia) y, sobre todo, de compañerismo.
+
+Para esta ocasión tan especial decidimos vestirnos elegantes, con tirantes llamativos y pajaritas de colores que representaban la personalidad de cada uno. El color Rosa era Arne; Verde -> Pedro; Negro -> Pelayo; Naranja -> Frigopie (Dani)-> Amarillo ; Martín -> Rojo -> Braulio ; Blanco -> Pablo (yo). Pero más allá de los colores y de nuestras diferencias, todos compartíamos una misma identidad. Juntos éramos los
+
+        <strong>PEQUEÑOS GIGANTES</strong>.
+    </p>
+
+    <img src="COREOFINAL1.jpeg" class="foto-coreo">
+
+    <p>
+        Nuestra música fue un mix que comenzaba con
+        Giant de Calvin Harris y terminaba con
+        Sorry For Party Rocking de LMFAO.
+
+        Ha sido una experiencia inolvidable que me ha
+        permitido mejorar corporalmente, expresarme
+        mejor y disfrutar muchísimo junto a mis compañeros.
+Mientras realizábamos los últimos movimientos de la coreografía, pensé en todo lo vivido durante el curso. Comprendí que el verdadero éxito no estaba únicamente en ejecutar bien una actuación, sino en el camino recorrido para llegar hasta ella. Cada ensayo había aportado algo diferente; cada compañero había dejado su huella; cada error nos había ayudado a mejorar. Al final, la coreografía era mucho más que una sucesión de pasos: era el reflejo del esfuerzo, la constancia y la unión de un grupo que aprendió a trabajar como un equipo.
+
+Sinceramente, esta experiencia me ha encantado. Me lo he pasado increíblemente bien, he compartido momentos que recordaré con cariño y, además, me ha ayudado a soltarme mucho más corporalmente y a ganar confianza en mí mismo. Hoy termina una etapa, pero me llevo algo mucho más importante que una nota: los recuerdos, las risas y la satisfacción de haber formado parte de algo especial junto a mis compañeros.
+
+Porque, al final, los Pequeños Gigantes demostramos que no hace falta ser los más grandes para conseguir cosas grandes. 💙✨
+    </p>
+
+    <iframe src="https://drive.google.com/file/d/1obm64ifW8tj0JeQifBXwhL_XpTuQxU0q/preview"></iframe>
+
+</div>
+
+</section>
+<section id="galeria" class="section">
+
+    <h2 style="text-align:center;">📸 Galería Multimedia</h2>
+
+    <div class="selector-galeria">
+
+        <button id="btn-fotos" class="active-btn" onclick="mostrarGaleria('fotos')">
+            📸 Imágenes
+        </button>
+
+        <button id="btn-videos" onclick="mostrarGaleria('videos')">
+            🎥 Vídeos
+        </button>
+
+    </div>
+
+    <div id="galeria-fotos" class="contenido-galeria">
+
+        <div class="item-galeria">
+            <img src="https://github.com/epablohervas/siguelritmo/blob/main/FOTOEQUIPOTALLER2.jpeg?raw=true" alt="Foto galería">
+            <span>14 de abril</span>
+        </div>
+
+        <div class="item-galeria">
+            <img src="https://github.com/epablohervas/siguelritmo/blob/main/COREOFINAL1.jpeg?raw=true" alt="Foto galería">
+            <span>26 de mayo</span>
+        </div>
+<div class="item-galeria">
+            <img src="https://github.com/epablohervas/siguelritmo/blob/main/taller3todos.jpeg?raw=true" alt="Foto galería">
+            <span>14 de abril</span>
+        </div>
+  <div class="item-galeria">
+            <img src="https://github.com/epablohervas/siguelritmo/blob/main/todosfinal.jpeg?raw=true" alt="Foto galería">
+            <span>26 de mayo</span>
+        </div>
+  <div class="item-galeria">
+            <img src="https://github.com/epablohervas/siguelritmo/blob/main/image.png?raw=true" alt="Foto galería">
+            <span>25 de mayo</span>
+        </div>
+  <div class="item-galeria">
+             <img src="https://github.com/epablohervas/siguelritmo/blob/main/yo.jpeg?raw=true" alt="Pablo Hervás">
+
+            <span>14 de abril</span>
+        </div>
+    </div>
+
+ 
+ 
+
+    <!-- ================= GALERÍA DE VÍDEOS ================= -->
+    <div id="galeria-videos" class="contenido-galeria" style="display:none;">
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1obm64ifW8tj0JeQifBXwhL_XpTuQxU0q/preview" frameborder="0" allowfullscreen></iframe>
+            <span>26 de Mayo - Coreografía Final</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/17bkaL5ClTMJblo0hfo2MDV0TgxOwQj-T/preview" frameborder="0" allowfullscreen></iframe>
+            <span>19 de Mayo - Aros</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1bvfD08-S3Yzg_1P1kB_q-P2tkPgPbwqU/preview" frameborder="0" allowfullscreen></iframe>
+            <span>14 de Mayo - Cuerdas (1)</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1AfUCFv-5u2fuS4nStW3FPlnnaNWrNTZT/preview" frameborder="0" allowfullscreen></iframe>
+            <span>14 de Mayo - Cuerdas (2)</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1RExZexOVzsGvl8Dg0tJocO7ip4sXUfId/preview" frameborder="0" allowfullscreen></iframe>
+            <span>12 de Mayo - Pelotas</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/17KxebON2ir9nbD-E-P7ym7ypzKruLTZ3/preview" frameborder="0" allowfullscreen></iframe>
+            <span>5 de Mayo - Giros</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/12PZq31UfLpODCRfk9A_R_dj74duKlBzG/preview" frameborder="0" allowfullscreen></iframe>
+            <span>30 de Abril - Saltos</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/18fJgqn5ikaAA7CsgwZldldsi-kbM9R7A/preview" frameborder="0" allowfullscreen></iframe>
+            <span>28 de Abril </span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1ghDjWFi6UoUTpSLTNyOUiRtsPyYs5A1O/preview" frameborder="0" allowfullscreen></iframe>
+            <span>28 de Abril  (2)</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1yoqZ0lRunXd-_-cmyXTpvnJaVDmiH7Gl/preview" frameborder="0" allowfullscreen></iframe>
+            <span>23 de Abril - Taller 3</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1Vaa-aNCLKwP6-O5GORG0Hgn2IgoKNEzB/preview" frameborder="0" allowfullscreen></iframe>
+            <span>21 de Abril - Pelotas</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1MLYP1d3rTBSxYot5zRQW8gfPKxvUi203/preview" frameborder="0" allowfullscreen></iframe>
+            <span>16 de Abril - Pregunta y Respuesta</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1y2aWDZ_3fngGq3ogk4upAtw0KE_ZEE_z/preview" frameborder="0" allowfullscreen></iframe>
+            <span>14 de Abril - Taller 2</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1N4XkMx0pidBVTslVmGIdLCuAtcJGhI5u/preview" frameborder="0" allowfullscreen></iframe>
+            <span>7 de Abril - Rodamientos</span>
+        </div>
+
+   
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1JMNzhfrfqJNZlKwd7JREqCJPk-bjOdHP/preview" frameborder="0" allowfullscreen></iframe>
+            <span>26 de Marzo</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1NTKiHlFZ6iAbnhaxzH9d39zkzqaEN9SX/preview" frameborder="0" allowfullscreen></iframe>
+            <span>19 de Marzo - Desplazamientos</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/18UIiacS50-MOAkRSRDjtOBnjuqhVzehY/preview" frameborder="0" allowfullscreen></iframe>
+            <span>12 de Marzo - Taller 1</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1IN-suce7GpsVDD2a_uKZ5Z0YPIpVOQGF/preview" frameborder="0" allowfullscreen></iframe>
+            <span>5 de Marzo</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1ozwHEGP-hWcJCaqgAyYx9REC0trBSaFz/preview" frameborder="0" allowfullscreen></iframe>
+            <span>3 de Marzo</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/14YoyA6pZAeBZ99z_d_JA9V9p6tPMiqqa/preview" frameborder="0" allowfullscreen></iframe>
+            <span>Ensayo - Coreografía Final</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/1hBUesZFJfSh2Ix5Ii3tmcUW51r0M5TYz/preview" frameborder="0" allowfullscreen></iframe>
+            <span>Ensayo - Taller 3</span>
+        </div>
+
+        <div class="video-galeria">
+            <iframe src="https://drive.google.com/file/d/13FiFRVLMinXs53ryBRbwUCDD0MN55XLG/preview" frameborder="0" allowfullscreen></iframe>
+            <span>Ensayo - Taller 2</span>
+        </div>
+
+    </div>
+
+</section>
+
+<footer>
+    <p>&copy; 2026 Blog de Gimnasia Rítmica - Creado con pasión</p>
+</footer>
+
+<script>
+    function show(id) {
+        // Ocultar todas las secciones
+        const sections = document.querySelectorAll('.section');
+        sections.forEach(s => s.classList.remove('active'));
+        
+        // Mostrar la elegida
+        document.getElementById(id).classList.add('active');
+        
+        // Si entramos a la sección diario, nos aseguramos de que se vea la lista y no una entrada abierta
+        if(id === 'diario') {
+            showDaysList();
+        }
+        
+        // Subir al inicio de la página al cambiar de sección
+        window.scrollTo(0,0);
+    }
+
+    function showEntry(idEntrada) {
+        // Ocultar la lista de días
+        document.getElementById('vista-dias').style.display = 'none';
+        
+        // Mostrar el contenedor de la entrada
+        document.getElementById('vista-entrada').style.display = 'block';
+        
+        // Ocultar todas las entradas individuales
+        const entradas = document.querySelectorAll('.entrada');
+        entradas.forEach(e => e.style.display = 'none');
+        
+        // Mostrar SOLO la entrada que hemos pinchado
+        document.getElementById(idEntrada).style.display = 'block';
+
+        // Hacer que vuelva automáticamente arriba de la página al cambiar de entrada
+        window.scrollTo(0,0);
+    }
+
+    function showDaysList() {
+        // Mostrar la lista de días
+        document.getElementById('vista-dias').style.display = 'block';
+        
+        // Ocultar la vista de lectura de la entrada
+        document.getElementById('vista-entrada').style.display = 'none';
+    }
+
+    // ============================================
+    // NUEVA FUNCIÓN PARA LA GALERÍA MULTIMEDIA
+    // ============================================
+    function mostrarGaleria(tipo) {
+        // Referencias a los contenedores
+        const divFotos = document.getElementById('galeria-fotos');
+        const divVideos = document.getElementById('galeria-videos');
+        
+        // Referencias a los botones
+        const btnFotos = document.getElementById('btn-fotos');
+        const btnVideos = document.getElementById('btn-videos');
+
+        if (tipo === 'fotos') {
+            divFotos.style.display = 'grid';
+            divVideos.style.display = 'none';
+            btnFotos.classList.add('active-btn');
+            btnVideos.classList.remove('active-btn');
+        } else if (tipo === 'videos') {
+            divFotos.style.display = 'none';
+            divVideos.style.display = 'grid';
+            btnVideos.classList.add('active-btn');
+            btnFotos.classList.remove('active-btn');
+        }
+    }
+</script>
+
+</body>
+</html>
